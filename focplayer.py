@@ -45,3 +45,8 @@ class TriggerPlayer(object):
 
 if __name__ == '__main__':
     player = TriggerPlayer(FILENAME, 23)
+    try:
+        while True:
+            GPIO.event_detected(23)
+    except KeyboardInterrupt:
+        GPIO.cleanup()
