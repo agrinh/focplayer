@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import RPi.GPIO as GPIO
 import pygame
+import signal
 import time
 
 
@@ -36,7 +37,7 @@ class TriggerPlayer(object):
 
     def update_state(self, pin):
         if pin == self.__gpio_pin:
-            time.sleep(1)
+            time.sleep(0.01)
             input_ = GPIO.input(self.__gpio_pin)
             if input_ and not self.is_playing():
                 self.play()
@@ -47,7 +48,6 @@ class TriggerPlayer(object):
 if __name__ == '__main__':
     player = TriggerPlayer(FILENAME, 23)
     try:
-        while True:
-            GPIO.event_detected(23)
+        signal.pause()
     except KeyboardInterrupt:
         GPIO.cleanup()
