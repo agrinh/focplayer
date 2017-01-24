@@ -50,4 +50,5 @@ if __name__ == '__main__':
     try:
         signal.pause()
     except KeyboardInterrupt:
-        GPIO.cleanup()
+        print("Stopping")
+    GPIO.cleanup()

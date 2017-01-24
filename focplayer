@@ -12,12 +12,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin
 
 . /lib/init/vars.sh
 . /lib/lsb/init-functions
-# If you need to source some other scripts, do it here
 
 case "$1" in
   start)
     log_begin_msg "Starting focplayer"
-    python focplayer
+    cd /home/pi/focplayer
+    sudo python focplayer.py
     log_end_msg $?
     exit 0
     ;;
