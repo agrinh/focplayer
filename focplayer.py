@@ -21,6 +21,7 @@ class TriggerPlayer(object):
         GPIO.setup(gpio_pin, GPIO.IN)
         GPIO.add_event_detect(gpio_pin, GPIO.BOTH)
         GPIO.add_event_callback(gpio_pin, self.update_state)
+        self.update_state(gpio_pin)
 
     def is_playing(self):
         return self.__playing
@@ -37,9 +38,9 @@ class TriggerPlayer(object):
         if pin == self.__gpio_pin:
             time.sleep(1)
             input_ = GPIO.input(self.__gpio_pin)
-            if input_ and not self.is_playing():
+            if not input_ and not self.is_playing():
                 self.play()
-            elif not input_ and self.is_playing():
+            elif input_ and self.is_playing():
                 self.stop()
 
 
